@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hunter Wetzel - Portfolio</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #eee;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #222;
+    }
+    nav a {
+      text-decoration: none;
+      color: #555;
+      margin-left: 1rem;
+    }
+    nav a:hover {
+      color: #000;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    .typed-output {
+      font-size: 1.2rem;
+      color: #444;
+      margin-bottom: 2rem;
+      min-height: 24px;
+    }
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 2rem;
+    }
+    .resume {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    .resume-section {
+      margin-bottom: 2rem;
+    }
+    .resume-section h3 {
+      font-size: 1.2rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+    .resume-section ul {
+      padding-left: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem;
+      color: #aaa;
+    }
+    .contact {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-top: 1px solid #eee;
+    }
+    .contact h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .contact form {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .contact button {
+      padding: 0.75rem;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .contact button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with logo -->
+  <header>
+    <h1 onclick="location.reload()">My Portfolio</h1>
+    <nav>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main hero section -->
+  <section class="hero">
+    <img src="profile.jpg" alt="Profile" class="profile-img" />
+    <h2>Hunter Wetzel</h2>
+    <p>IT Professional | Shepherdstown, WV | hwetze01@rams.shepherd.edu | 571.269.5597</p>
+    <div class="typed-output">
+      <span id="typed-text"></span>
+    </div>
+  </section>
+
+  <!-- Resume info -->
+  <div class="resume">
+    <div class="resume-section">
+      <h3>Professional Summary</h3>
+      <p>Results-driven IT professional with a strong background in retail operations and store management, bringing a unique blend of technical expertise and business acumen. Adept at leveraging technology to enhance operational efficiency, streamline processes, and drive customer satisfaction.</p>
+    </div>
+    <div class="resume-section">
+      <h3>Experience</h3>
+      <ul>
+        <li><strong>IT Service Desk, Shepherd University</strong> (2024–Present) – Managed support requests, diagnosed and troubleshot hardware, software, and network issues.</li>
+        <li><strong>Plant Technician, Proctor & Gamble</strong> (2022–2024) – Operated computer tracking systems, maintained safety, managed inventory.</li>
+        <li><strong>Assistant Store Manager, Vans (VF Corporation)</strong> (2018–2022) – Oversaw operations, staff training, hiring, and scheduling.</li>
+      </ul>
+    </div>
+    <div class="resume-section">
+      <h3>Education</h3>
+      <p><strong>Bachelor of Science in Computer Science</strong>, Shepherd University (Expected May 2027)<br>Concentration: Computer and Information Science | Minor: Physics | GPA: 3.5</p>
+    </div>
+    <div class="resume-section">
+      <h3>Certifications</h3>
+      <ul>
+        <li>Google Cybersecurity Professional Certificate</li>
+        <li>CompTIA A+</li>
+        <li>CompTIA Data+</li>
+      </ul>
+    </div>
+    <div class="resume-section">
+      <h3>Skills</h3>
+      <ul>
+        <li>Hardware / Software Troubleshooting</li>
+        <li>Network Configuration and Support</li>
+        <li>System Administration (Windows, Mac, Linux)</li>
+        <li>Office 365 / Microsoft Office Administration</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contact form section -->
+  <section class="contact" id="contact">
+  <h3>Contact Me</h3>
+  <form action="https://formsubmit.co/37528f394b641eaf058f0235e3a8ecf8" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <input type="hidden" name="_subject" value="New message from portfolio">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://sk8hunterr.github.io/portfolio/">
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Hunter Wetzel. All rights reserved.
+  </footer>
+
+  <!-- Typed.js from CDN -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    var typed = new Typed("#typed-text", {
+      strings: [
+        "Welcome to my portfolio!",
+        "IT professional. Lifelong learner.",
+        "Let's build something great together."
+      ],
+      typeSpeed: 60,
+      backSpeed: 25,
+      loop: true
+    });
+  </script>
+</body>
+</html>
