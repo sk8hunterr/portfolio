@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(__dirname));
 
 // POST endpoint for contact form
 app.post('/send-email', (req, res) => {
