@@ -25,15 +25,14 @@ app.get("/health", (req, res) => {
 // POST route to send email
 app.post("/send-email", async (req, res) => {
   console.log("Received email request:", req.body);
-  
+
   const { name, email, message } = req.body;
 
-  // Validate required fields
   if (!name || !email || !message) {
     return res.status(400).send("All fields are required");
   }
 
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
@@ -42,9 +41,9 @@ app.post("/send-email", async (req, res) => {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER, // Use your email as sender
-    to: process.env.EMAIL_USER,   // Send to yourself
-    replyTo: email,               // Allow replies to go to the contact person
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
+    replyTo: email,
     subject: `Portfolio Contact: ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     html: `
@@ -59,25 +58,22 @@ app.post("/send-email", async (req, res) => {
   try {
     await transporter.sendMail(mailOptions);
     console.log("Email sent successfully");
-    
-    // Redirect to your GitHub Pages thank you page
     res.redirect("https://sk8hunterr.github.io/portfolio/thankyou.html");
-    
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).send(`Error sending message: ${error.message}`);
   }
 });
 
-// Handle 404 for undefined routes
+// Catch-all 404 route
 app.use('*', (req, res) => {
-  res.status(404).json({ 
-    error: "Route not found", 
+  res.status(404).json({
+    error: "Route not found",
     availableRoutes: ["/", "/health", "/send-email (POST)"]
   });
 });
 
-// Start server
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
   console.log(`Available routes:`);
