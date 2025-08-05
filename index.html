@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hunter Wetzel - Portfolio</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,14 +44,8 @@
     }
     .hero p {
       font-size: 1.1rem;
-      margin-bottom: 1rem;
-      color: #666;
-    }
-    .typed-output {
-      font-size: 1.2rem;
-      color: #444;
       margin-bottom: 2rem;
-      min-height: 24px;
+      color: #666;
     }
     .profile-img {
       width: 160px;
@@ -102,13 +93,11 @@
     }
     .contact input,
     .contact textarea {
-      width: 100%;
       margin-bottom: 1rem;
       padding: 0.75rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
-      box-sizing: border-box;
     }
     .contact button {
       padding: 0.75rem;
@@ -122,9 +111,11 @@
       background-color: #555;
     }
   </style>
+  <!-- Typed.js CDN -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 <body>
-  <!-- Header with logo -->
+  <!-- Header with logo and nav -->
   <header>
     <h1 onclick="location.reload()">My Portfolio</h1>
     <nav>
@@ -134,12 +125,11 @@
 
   <!-- Main hero section -->
   <section class="hero">
+    <!-- Profile picture -->
     <img src="profile.jpg" alt="Profile" class="profile-img" />
-    <h2>Hunter Wetzel</h2>
-    <p>IT Professional | Shepherdstown, WV | hwetze01@rams.shepherd.edu | 571.269.5597</p>
-    <div class="typed-output">
-      <span id="typed-text"></span>
-    </div>
+    <!-- Typing animation -->
+    <h2><span id="typed"></span></h2>
+    <p>Shepherdstown, WV | hwetze01@rams.shepherd.edu | 571.269.5597</p>
   </section>
 
   <!-- Resume info -->
@@ -182,15 +172,12 @@
   <!-- Contact form section -->
   <section class="contact" id="contact">
   <h3>Contact Me</h3>
-  <form action="https://formsubmit.co/37528f394b641eaf058f0235e3a8ecf8" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <input type="hidden" name="_subject" value="New message from portfolio">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://sk8hunterr.github.io/portfolio/thankyou.html">
-    <button type="submit">Send Message</button>
-  </form>
+  <form action="/contact" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
 </section>
 
   <!-- Footer -->
@@ -198,17 +185,13 @@
     &copy; 2025 Hunter Wetzel. All rights reserved.
   </footer>
 
-  <!-- Typed.js from CDN -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Typed.js config -->
   <script>
-    var typed = new Typed("#typed-text", {
-      strings: [
-        "Welcome to my portfolio!",
-        "IT professional.",
-        "Let's build something great together."
-      ],
-      typeSpeed: 60,
-      backSpeed: 25,
+    var typed = new Typed('#typed', {
+      strings: ['Hunter Wetzel', 'IT Professional', 'Web Developer', 'Problem Solver'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 1500,
       loop: true
     });
   </script>
