@@ -1,63 +1,49 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-require('dotenv').config(); // Only required for local development
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.static(path.join(__dirname, '/')));
 
-// Serve homepage
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Handle contact form submission
-app.post('/contact', (req, res) => {
+// Email endpoint
+app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
 
-  // Create transporter using Gmail
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER, // hunterwetzelportfolio@gmail.com
-      pass: process.env.EMAIL_PASS, // App Password (not regular password)
-    },
+      user: process.env.EMAIL_USER, // Set in Render Environment
+      pass: process.env.EMAIL_PASS  // Set in Render Environment
+    }
   });
 
-  // Email contents
   const mailOptions = {
     from: email,
     to: process.env.EMAIL_USER,
-    subject: 'New Portfolio Contact Form Message',
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    subject: `Portfolio Contact Form Submission from ${name}`,
+    text: `Message:\n${message}\n\nSender: ${name}\nEmail: ${email}`
   };
 
-  // Optional: Verify connection
-  transporter.verify((err, success) => {
-    if (err) {
-      console.error('❌ Email server error:', err);
-    } else {
-      console.log('✅ Email server is ready to send');
-    }
-  });
-
-  // Send the email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('❌ Failed to send email:', error);
-      return res.status(500).send('Something went wrong while sending email.');
+      console.error('Error sending email:', error);
+      res.status(500).send('Something went wrong.');
+    } else {
+      console.log('Email sent:', info.response);
+      res.redirect('/thankyou.html');
     }
-    console.log('✅ Email sent:', info.response);
-    res.redirect('/thankyou.html');
   });
 });
 
-// Start the server
+// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
