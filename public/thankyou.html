@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You - Hunter Wetzel</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #eee;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #222;
+    }
+    nav a {
+      text-decoration: none;
+      color: #555;
+      margin-left: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+    .thank-you-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      animation: scaleIn 0.5s ease-out;
+    }
+    .checkmark svg {
+      width: 40px;
+      height: 40px;
+      fill: white;
+    }
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .thank-you-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    .thank-you-section p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .response-time {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #4CAF50;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .response-time h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .response-time p {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem;
+      color: #aaa;
+      margin-top: auto;
+    }
+    
+    /* Auto-redirect countdown */
+    .redirect-info {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+    .countdown {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1 onclick="window.location.href='index.html'">My Portfolio</h1>
+    <nav>
+      <a href="index.html">← Back to Portfolio</a>
+    </nav>
+  </header>
+
+  <!-- Thank you section -->
+  <section class="thank-you-section">
+    <div class="checkmark">
+      <svg viewBox="0 0 24 24">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </div>
+    
+    <h2>Thank You!</h2>
+    
+    <p>
+      Your message has been successfully sent. I appreciate you taking the time to reach out, 
+      and I'm excited to hear from you!
+    </p>
+    
+    <div class="response-time">
+      <h3>What's Next?</h3>
+      <p>I typically respond to messages within 24-48 hours. I'll get back to you at the email address you provided as soon as possible.</p>
+    </div>
+    
+    <div class="redirect-info">
+      Redirecting you back to my portfolio in <span class="countdown" id="countdown">10</span> seconds...
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Hunter Wetzel. All rights reserved.
+  </footer>
+
+  <script>
+    // Countdown and auto-redirect
+    let timeLeft = 10;
+    const countdownElement = document.getElementById('countdown');
+    
+    const timer = setInterval(() => {
+      timeLeft--;
+      countdownElement.textContent = timeLeft;
+      
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+    
+    // Allow users to cancel auto-redirect by interacting with the page
+    let userInteracted = false;
+    
+    document.addEventListener('click', () => {
+      if (!userInteracted) {
+        userInteracted = true;
+        clearInterval(timer);
+        document.querySelector('.redirect-info').innerHTML = 
+          'Auto-redirect cancelled. <a href="index.html" style="color: #333; text-decoration: underline;">Click here</a> to return to portfolio.';
+      }
+    });
+  </script>
+</body>
+</html>
